@@ -3,8 +3,9 @@
 
   const noteModal = ref(false);
   const noteEditModal = ref(false);
+  const noteViewModal = ref(false);
   const noteErrorTextLenght = ref('');
-
+  
   const newNote = ref();
   const notesState = ref([
     {
@@ -14,9 +15,9 @@
       date: new Date()
     }
   ]);
-
+  
   const targetNoteState = ref({}); // storage the target note {index, Target Note} 
-
+  
   // open & close modal function
   const openModall = () => {
     newNote.value = ''
@@ -25,7 +26,8 @@
   const closeModall = () => {
     noteModal.value = false
     noteEditModal.value = false
-
+    noteViewModal.value = false;
+    
     newNote.value = ''
   }
 
@@ -49,7 +51,6 @@
     // notesState.value.splice(item.id, 1);
     const newNotesState = notesState.value.filter((items) => items !== item );
     notesState.value = newNotesState;
-    console.log(item, item.id, newNotesState)
   }
   
   // edit the note (click on the edit button)
@@ -67,8 +68,6 @@
   const updateNote = () => {
     const noteIndex = targetNoteState.value.index; // get the note index
     const noteTarget = targetNoteState.value.note; // get the note content
-    console.log(noteIndex);
-    console.log(noteTarget);
 
     notesState.value[noteIndex] = {
       value: newNote.value,
@@ -79,10 +78,22 @@
     noteEditModal.value = false;
   }
 
+  // view note
+  const viewNote = (item) => {
+    noteViewModal.value = true
+
+    targetNoteState.value = {
+      value: item.value,
+      background: item.background,
+      date: item.date,
+      id: item.id
+    };
+  }
+
 </script>
 
 <template>
-  <!-- qdd note modal -->
+  <!-- add note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteModal">
       <div class="add-note-modal">
@@ -94,12 +105,22 @@
     </div>
   </Teleport>
 
-  <!-- qdd note modal -->
+  <!-- update note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteEditModal">
       <div class="add-note-modal">
         <textarea class="form-control" name="newNote" id="newNote" rows="10" v-model="newNote" autofocus></textarea>
         <button class="btn btn-full btn-primary" @click="updateNote()">Update Note</button>
+        <button class="btn btn-close" @click="closeModall">x</button>
+      </div>
+    </div>
+  </Teleport>
+  
+  <!-- View note modal -->
+  <Teleport to="body">
+    <div class="modals" v-if="noteViewModal">
+      <div class="view-note-modal" :style="{backgroundColor: targetNoteState.background}">
+        <p>{{ targetNoteState.value }}</p>
         <button class="btn btn-close" @click="closeModall">x</button>
       </div>
     </div>
@@ -142,7 +163,7 @@
             </svg>          
           </button>
 
-          <button class="btn-icon" :style="{backgroundColor: note.background}">
+          <button class="btn-icon" @click="viewNote(note)" :style="{backgroundColor: note.background}">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <circle cx="12" cy="12" r="2"></circle>
@@ -360,6 +381,16 @@
 
   .add-note-modal .btn {
     font-size: 1.4rem;
+  }
+
+  .view-note-modal {
+    height: 90vh;
+    width: 800px;
+    padding: 25px;
+    color: black !important;
+    position: relative;
+    inset: 0;
+    z-index: 3;
   }
 
   /* inputes style */
