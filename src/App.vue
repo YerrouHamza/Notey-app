@@ -18,6 +18,13 @@
   
   const targetNoteState = ref({}); // storage the target note {index, Target Note} 
   
+  
+  // save data on local storage
+  const storeData = () =>{
+    return localStorage.setItem('notes', JSON.stringify(notesState.value));
+  }
+
+
   // open & close modal function
   const openModall = () => {
     newNote.value = ''
@@ -30,7 +37,7 @@
     
     newNote.value = ''
   }
-
+  
   // add new note function
   const addNewNote = () => {
     // newNote.value = '';
@@ -41,16 +48,19 @@
       background: "hsl(" + Math.random() * 360 + ", 100%, 75%)"
     })
     noteModal.value = false;
-    newNote.value = '';
+    newNote.value = '';    
     
+    storeData(); // save data on local storage
   }
-
+  
   
   // delete the note
   const deleteNote = (item) => {
     // notesState.value.splice(item.id, 1);
     const newNotesState = notesState.value.filter((items) => items !== item );
     notesState.value = newNotesState;
+
+    storeData(); // save data on local storage
   }
   
   // edit the note (click on the edit button)
@@ -76,6 +86,8 @@
       id: noteTarget.id
     }
     noteEditModal.value = false;
+
+    storeData(); // save data on local storage
   }
 
   // view note
