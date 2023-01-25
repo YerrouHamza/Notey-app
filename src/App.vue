@@ -13,6 +13,18 @@
       background: '#ffe4c4',
       id: 0,
       date: new Date()
+    },
+    {
+      value: 'Hello World',
+      background: '#ffe4c4',
+      id: 0,
+      date: new Date()
+    },
+    {
+      value: 'Hello World',
+      background: '#ffe4c4',
+      id: 0,
+      date: new Date()
     }
   ]);
   
@@ -23,6 +35,19 @@
   const storeData = () =>{
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
+
+  const testNote = ref([]);
+  
+  onMounted(() => {
+    const storageData = JSON.parse(localStorage.getItem('notes'));
+    testNote.value = storageData;
+    
+    console.log(storageData)
+    console.log(testNote.value)
+    console.log(notesState.value)
+
+    notesState.value = testNote.value
+  });
   
   /* watch function */
   watch(notesState.value, () => {
@@ -54,7 +79,7 @@
     noteModal.value = false;
     newNote.value = '';    
     
-    // storeData(); // save data on local storage
+    storeData(); // save data on local storage
   }
   
   
@@ -64,7 +89,7 @@
     const newNotesState = notesState.value.filter((items) => items !== item );
     notesState.value = newNotesState;
 
-    // storeData(); // save data on local storage
+    storeData(); // save data on local storage
   }
   
   // edit the note (click on the edit button)
@@ -91,7 +116,7 @@
     }
     noteEditModal.value = false;
 
-    // storeData(); // save data on local storage
+    storeData(); // save data on local storage
   }
 
   // view note
