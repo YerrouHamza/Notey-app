@@ -35,18 +35,13 @@
   const storeData = () =>{
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
-
-  const testNote = ref([]);
-  
+    
   onMounted(() => {
     const storageData = JSON.parse(localStorage.getItem('notes'));
-    testNote.value = storageData;
-    
-    console.log(storageData)
-    console.log(testNote.value)
-    console.log(notesState.value)
+    notesState.value = storageData;
 
-    notesState.value = testNote.value
+    console.log(storageData)
+    console.log(notesState.value)
   });
   
   /* watch function */
@@ -179,9 +174,9 @@
           {{ note.value }}
         </p>
         <small class="cards-date">
-          {{ note.date.toLocaleDateString('en-MR') }} 
+          <!-- {{ note.date.toLocaleDateString('en-MR') }}  -->
           <span>
-            ({{ note.date.toLocaleTimeString('en-US') }})
+            <!-- ({{ note.date.toLocaleTimeString('en-US') }}) -->
           </span>
         </small>
         <div class="icons-btn-group">
