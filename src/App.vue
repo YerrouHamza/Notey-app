@@ -1,5 +1,5 @@
 <script setup>
-  import { ref } from 'vue'
+  import { ref, watch, onMounted } from 'vue'
 
   const noteModal = ref(false);
   const noteEditModal = ref(false);
@@ -23,8 +23,12 @@
   const storeData = () =>{
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
-
-
+  
+  /* watch function */
+  watch(notesState.value, () => {
+    storeData();
+  })
+  
   // open & close modal function
   const openModall = () => {
     newNote.value = ''
@@ -50,7 +54,7 @@
     noteModal.value = false;
     newNote.value = '';    
     
-    storeData(); // save data on local storage
+    // storeData(); // save data on local storage
   }
   
   
@@ -60,7 +64,7 @@
     const newNotesState = notesState.value.filter((items) => items !== item );
     notesState.value = newNotesState;
 
-    storeData(); // save data on local storage
+    // storeData(); // save data on local storage
   }
   
   // edit the note (click on the edit button)
@@ -87,7 +91,7 @@
     }
     noteEditModal.value = false;
 
-    storeData(); // save data on local storage
+    // storeData(); // save data on local storage
   }
 
   // view note
