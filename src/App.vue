@@ -13,18 +13,6 @@
       background: '#ffe4c4',
       id: 0,
       date: new Date()
-    },
-    {
-      value: 'Hello World',
-      background: '#ffe4c4',
-      id: 0,
-      date: new Date()
-    },
-    {
-      value: 'Hello World',
-      background: '#ffe4c4',
-      id: 0,
-      date: new Date()
     }
   ]);
   
@@ -35,13 +23,14 @@
   const storeData = () =>{
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
-    
+  
   onMounted(() => {
     const storageData = JSON.parse(localStorage.getItem('notes'));
-    notesState.value = storageData;
-
+    
     console.log(storageData)
     console.log(notesState.value)
+
+    notesState.value = storageData
   });
   
   /* watch function */
