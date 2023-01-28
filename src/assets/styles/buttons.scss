@@ -1,0 +1,87 @@
+
+/* Buttons style */
+.btn {
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    padding: 10px 20px;
+    
+    &:hover {
+        opacity: .8;
+    }
+    &:active {
+        transform: scale(.9);
+    }
+    
+}
+
+.btn-full {
+    display: block;
+    width: 100%;
+    &:active {
+        transform: scale(1);
+    }
+}
+
+.btn-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 20px !important;
+    padding: 0;
+    
+    &:hover {
+        background-color: rgb(229, 44, 44);
+        opacity: 1;
+        color: white;
+    }
+}
+
+.btn-primary {
+    background-color: var(--cl-primary);
+    color: black;
+}
+
+.add-note { /* add notes btn */
+    font-size: 1.3rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 0;
+
+    border-radius: 50%;
+}
+
+.icons-btn-group {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    z-index: 3;
+    transform: translate(-50%);
+
+    transition: display 1s ease-in-out;
+    display: none;
+    
+    .btn-icon {
+        background-color: var(--cl-primary);
+        border: none;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+        color: black;
+        font-size: 0;
+        margin: 0 2px;
+    }
+    .btn-icon:hover {
+        opacity: .9;
+    }
+}
