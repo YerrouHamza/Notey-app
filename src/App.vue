@@ -224,15 +224,4 @@
     font-family: var(--ft-family-primary);
   }
 
-  /* inputes style */
-  .form-control {
-    width: 100%;
-    font-size: 1.3rem;
-  }
-  .form-control:focus, .form-control:active, .form-control:focus-visible {
-    border: 2px solid var(--cl-primary) !important;
-    outline: none;
-    resize: none;
-  } 
-
 </style>
