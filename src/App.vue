@@ -19,22 +19,25 @@
   const targetNoteState = ref({}); // storage the target note {index, Target Note} 
   
   
-  // save data on local storage
+  // function: save data on local storage
   const storeData = () =>{
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
-  
+
+
+  // function: before pqge load
   onMounted(() => {
     const storageData = JSON.parse(localStorage.getItem('notes'));
     
-    console.log(storageData)
-    console.log(notesState.value)
+    storageData.forEach(state => {
+      state.date = new Date(state.date)
+    });
 
-    notesState.value = storageData
+    notesState.value = storageData;
   });
   
-  /* watch function */
-  watch(notesState.value, () => {
+  /* watch functions */
+  watch(notesState.value, () => { // watch the main note
     storeData();
   })
   
@@ -163,9 +166,9 @@
           {{ note.value }}
         </p>
         <small class="cards-date">
-          <!-- {{ note.date.toLocaleDateString('en-MR') }}  -->
+          {{ note.date.toLocaleDateString('en-MR') }} 
           <span>
-            <!-- ({{ note.date.toLocaleTimeString('en-US') }}) -->
+            ({{ note.date.toLocaleTimeString('en-US') }})
           </span>
         </small>
         <div class="icons-btn-group">
