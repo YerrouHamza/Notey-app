@@ -124,11 +124,23 @@
   <!-- add note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteModal">
-      <div class="add-note-modal">
+      <div class="modal">
         <textarea class="form-control" name="newNote" id="newNote" rows="10" v-model="newNote" autofocus></textarea>
         <p class="error-missage" v-if="noteErrorTextLenght">{{ noteErrorTextLenght }}</p>
-        <button class="btn btn-full btn-primary" @click="addNewNote">Add Note</button>
-        <button class="btn btn-close" @click="closeModall">x</button>
+        <button class="btn btn-add btn-primary" @click="addNewNote">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 5l0 14"></path>
+            <path d="M5 12l14 0"></path>
+          </svg>
+        </button>
+        <button class="btn btn-close" @click="closeModall">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </Teleport>
@@ -136,10 +148,23 @@
   <!-- update note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteEditModal">
-      <div class="add-note-modal">
+      <div class="modal">
         <textarea class="form-control" name="newNote" id="newNote" rows="10" v-model="newNote" autofocus></textarea>
-        <button class="btn btn-full btn-primary" @click="updateNote()">Update Note</button>
-        <button class="btn btn-close" @click="closeModall">x</button>
+        <button class="btn btn-update btn-primary" @click="updateNote()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+            <path d="M16 5l3 3"></path>
+          </svg>
+        </button>
+        <button class="btn btn-close" @click="closeModall">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </Teleport>
@@ -147,9 +172,15 @@
   <!-- View note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteViewModal">
-      <div class="view-note-modal" :style="{backgroundColor: targetNoteState.background}">
+      <div class="modal view-note-modal" :style="{backgroundColor: targetNoteState.background}">
         <p>{{ targetNoteState.value }}</p>
-        <button class="btn btn-close" @click="closeModall">x</button>
+        <button class="btn btn-close" @click="closeModall">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
       </div>
     </div>
   </Teleport>

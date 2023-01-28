@@ -15,14 +15,55 @@
         inset: 0;
         height: 100vh;
         width: 100vw;
-        background-color: var(--color-text);
-        opacity: .5;
+        background-color: rgba(128, 128, 128, 0.414);
+        backdrop-filter: blur(.5rem);
+        // opacity: .5;
         z-index: 2;
+    }
+
+    .modal {
+        height: 90vh;
+        width: 800px;
+        color: black !important;
+        background-color: var(--color-background);
+        position: relative;
+        inset: 0;
+        z-index: 3;
+
+        textarea {
+            height: 100%;
+            padding: 25px;
+            background-color: rgb(48, 48, 48);
+            color: white;
+        }
+
+        .view-note-modal {
+            padding: 25px;
+        }
+
+        .btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            transform: translateX(calc(100% + 20px));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-update,
+        .btn-add {
+            bottom: 0;
+            top: auto;
+            border: none;
+        }
     }
 
     .add-note-modal {
         width: 800px;
-        background-color: var(--color-background);
         padding: 25px;
         
         position: relative;
