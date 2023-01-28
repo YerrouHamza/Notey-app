@@ -24,14 +24,14 @@
     return localStorage.setItem('notes', JSON.stringify(notesState.value));
   }
   
-  // onMounted(() => {
-  //   const storageData = JSON.parse(localStorage.getItem('notes'));
+  onMounted(() => {
+    const storageData = JSON.parse(localStorage.getItem('notes'));
     
-  //   console.log(storageData)
-  //   console.log(notesState.value)
+    console.log(storageData)
+    console.log(notesState.value)
 
-  //   notesState.value = storageData
-  // });
+    notesState.value = storageData
+  });
   
   /* watch function */
   watch(notesState.value, () => {
