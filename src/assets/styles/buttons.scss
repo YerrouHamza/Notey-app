@@ -56,6 +56,13 @@
     padding: 0;
 
     border-radius: 50%;
+
+    & svg {
+        transition: all .4s ease-in-out;
+    }
+    &:hover svg {
+        transform: rotate(180deg);
+    }
 }
 
 .icons-btn-group {
