@@ -309,52 +309,6 @@
     opacity: .9;
   }
 
-/* style for the modals */
-  .modals {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-  }
-
-  .modals::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: var(--color-text);
-    opacity: .5;
-    z-index: 2;
-  }
-
-  .add-note-modal {
-    width: 800px;
-    background-color: var(--color-background);
-    padding: 25px;
-    
-    position: relative;
-    inset: 0;
-    z-index: 3;
-  }
-
-  .add-note-modal .btn {
-    font-size: 1.4rem;
-  }
-
-  .view-note-modal {
-    height: 90vh;
-    width: 800px;
-    padding: 25px;
-    color: black !important;
-    position: relative;
-    inset: 0;
-    z-index: 3;
-  }
-
   /* inputes style */
   .form-control {
     width: 100%;
