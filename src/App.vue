@@ -119,9 +119,6 @@
     };
   }
 
-  window.localStorage.clear();
-
-
 </script>
 
 <template>
