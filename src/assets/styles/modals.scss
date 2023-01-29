@@ -17,24 +17,23 @@
         width: 100vw;
         background-color: rgba(128, 128, 128, 0.414);
         backdrop-filter: blur(.5rem);
-        // opacity: .5;
         z-index: 2;
     }
-
+    
     .modal {
         height: 90vh;
         width: 800px;
-        color: black !important;
-        background-color: var(--color-background);
         position: relative;
         inset: 0;
         z-index: 3;
-
+        border-radius: 7px;
+        
         textarea {
             height: 100%;
             padding: 25px;
-            background-color: rgb(48, 48, 48);
-            color: white;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            border-radius: 7px;
         }
 
         .view-note-modal {
@@ -60,19 +59,6 @@
             top: auto;
             border: none;
         }
-    }
-
-    .add-note-modal {
-        width: 800px;
-        padding: 25px;
-        
-        position: relative;
-        inset: 0;
-        z-index: 3;
-    }
-
-    .add-note-modal .btn {
-        font-size: 1.4rem;
     }
 
     .view-note-modal {
