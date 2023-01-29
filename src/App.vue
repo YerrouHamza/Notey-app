@@ -27,6 +27,7 @@
 
   // function: before pqge load
   onMounted(() => {
+    localStorage.setItem('notes', JSON.stringify(notesState.value));
     const storageData = JSON.parse(localStorage.getItem('notes'));
     
     storageData.forEach(state => {
