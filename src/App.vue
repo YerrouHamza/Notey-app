@@ -27,14 +27,17 @@
 
   // function: before pqge load
   onMounted(() => {
-    localStorage.setItem('notes', JSON.stringify(notesState.value));
-    const storageData = JSON.parse(localStorage.getItem('notes'));
-    
-    storageData.forEach(state => {
-      state.date = new Date(state.date)
-    });
-
-    notesState.value = storageData;
+    if(localStorage.length == 0) {
+      localStorage.setItem('notes', JSON.stringify(notesState.value));
+    } else {
+      const storageData = JSON.parse(localStorage.getItem('notes'));
+      
+      storageData.forEach(state => {
+        state.date = new Date(state.date)
+      });
+  
+      notesState.value = storageData;
+    }
   });
   
   /* watch functions */
