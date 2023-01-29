@@ -16,7 +16,7 @@
     }
   ]);
   
-  const targetNoteState = ref({}); // storage the target note {index, Target Note} 
+  const targetNoteState = ref({}); // storage the target note {index, Target Note}
   
   
   // function: save data on local storage
@@ -75,15 +75,18 @@
     // notesState.value.splice(item.id, 1);
     const newNotesState = notesState.value.filter((items) => items !== item );
     notesState.value = newNotesState;
-
+    
     storeData(); // save data on local storage
   }
   
   // edit the note (click on the edit button)
   const editNote = (item, index) => {
+    noteModal.value = false;
+    noteViewModal.value = false;
+    
     noteEditModal.value = true;
     newNote.value = item.value;
-
+    
     targetNoteState.value = {
       index: index,
       note: item
@@ -102,19 +105,17 @@
       id: noteTarget.id
     }
     noteEditModal.value = false;
-
+    
     storeData(); // save data on local storage
   }
-
+  
   // view note
-  const viewNote = (item) => {
-    noteViewModal.value = true
-
+  const viewNote = (item, index) => {
+    noteViewModal.value = true;
+    
     targetNoteState.value = {
-      value: item.value,
-      background: item.background,
-      date: item.date,
-      id: item.id
+      index: index,
+      note: item
     };
   }
 
@@ -172,8 +173,8 @@
   <!-- View note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteViewModal">
-      <div class="modal view-note-modal" :style="{backgroundColor: targetNoteState.background}">
-        <p>{{ targetNoteState.value }}</p>
+      <div class="modal view-note-modal" :style="{backgroundColor: targetNoteState.note.background}">
+        <p>{{ targetNoteState.note.value }}</p>
         <button class="btn btn-close" @click="closeModall">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -181,6 +182,15 @@
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
+
+          <button class="btn btn-icon" @click="editNote(targetNoteState.note, targetNoteState.index)" :style="{backgroundColor: targetNoteState.note.background}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+              <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+              <path d="M16 5l3 3"></path>
+            </svg>          
+          </button>
       </div>
     </div>
   </Teleport>
@@ -228,7 +238,7 @@
             </svg>          
           </button>
 
-          <button class="btn-icon" @click="viewNote(note)" :style="{backgroundColor: note.background}">
+          <button class="btn-icon" @click="viewNote(note, index)" :style="{backgroundColor: note.background}">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <circle cx="12" cy="12" r="2"></circle>
