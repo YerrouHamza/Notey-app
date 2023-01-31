@@ -13,7 +13,8 @@
   });
   const notesState = ref([
     {
-      value: 'Hello World',
+      noteTitle: 'Hello World',
+      noteText: 'Try it, Add new notes',
       background: '#ffe4c4',
       id: 0,
       date: new Date()
@@ -43,6 +44,8 @@
       notesState.value = storageData;
     }
   });
+
+  localStorage.clear()
   
   /* watch functions */
   watch(notesState.value, () => { // watch the main note
