@@ -6,7 +6,10 @@
   const noteViewModal = ref(false);
   const noteErrorTextLenght = ref('');
   
-  const newNote = ref();
+  const newNote = ref({
+    title: '',
+    text: ''
+  });
   const notesState = ref([
     {
       value: 'Hello World',
@@ -47,7 +50,8 @@
   
   // open & close modal function
   const openModall = () => {
-    newNote.value = ''
+    newNote.value.title = ''
+    newNote.value.text = ''
     noteModal.value = true
   }
   const closeModall = () => {
@@ -55,20 +59,22 @@
     noteEditModal.value = false
     noteViewModal.value = false;
     
-    newNote.value = ''
+    newNote.value.title = ''
+    newNote.value.text = ''
   }
   
   // add new note function
   const addNewNote = () => {
-    // newNote.value = '';
     notesState.value.push({
-      value: newNote.value,
+      noteTitle: newNote.value.title,
+      noteText: newNote.value.text,
       date: new Date(),
       id: Math.floor(Math.random() * 100000000),
       background: "hsl(" + Math.random() * 360 + ", 100%, 75%)"
     })
     noteModal.value = false;
-    newNote.value = '';    
+    newNote.value.title = ''
+    newNote.value.text = '' 
     
     storeData(); // save data on local storage
   }
@@ -89,7 +95,8 @@
     noteViewModal.value = false;
     
     noteEditModal.value = true;
-    newNote.value = item.value;
+    newNote.value.title = item.noteTitle;
+    newNote.value.text = item.noteText;
     
     targetNoteState.value = {
       index: index,
@@ -103,7 +110,8 @@
     const noteTarget = targetNoteState.value.note; // get the note content
 
     notesState.value[noteIndex] = {
-      value: newNote.value,
+      noteTitle: newNote.value.title,
+      noteText: newNote.value.text,
       background: noteTarget.background,
       date: noteTarget.date,
       id: noteTarget.id
@@ -130,7 +138,8 @@
   <Teleport to="body">
     <div class="modals" v-if="noteModal">
       <div class="modal">
-        <textarea class="form-control" name="newNote" id="newNote" rows="10" v-model="newNote" placeholder="Write your note here" autofocus></textarea>
+        <textarea class="form-control note-title" name="noteTitle" id="addNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
+        <textarea class="form-control note-text" name="noteText" id="addNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
         <p class="error-missage" v-if="noteErrorTextLenght">{{ noteErrorTextLenght }}</p>
         <button class="btn btn-add btn-primary" @click="addNewNote">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

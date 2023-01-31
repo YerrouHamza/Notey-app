@@ -1,13 +1,19 @@
 /* inputes style */
-textarea {
-    &.form-control {
-        width: 100%;
-        font-size: 1.3rem;
-
-        &:focus, &:active, &:focus-visible {
-            border: 2px solid var(--cl-primary) !important;
-            outline: none;
-            resize: none;
-        } 
+.form-control {
+    width: 100%;
+    resize: none;
+    
+    &:focus, &:active, &:focus-visible {
+        border: none;
+        outline: none;
+        resize: none;
     }
+    &.note-title {
+        font-size: 2rem;
+    }
+
+    &.note-text {
+        font-size: 1.3rem;
+    }
+    
 }

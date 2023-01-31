@@ -27,13 +27,24 @@
         inset: 0;
         z-index: 3;
         border-radius: 7px;
+        background-color: var(--color-background);
+        padding: 25px;
+        border-radius: 7px;
         
-        textarea {
-            height: 100%;
-            padding: 25px;
-            background-color: var(--color-background);
+        .form-control {
+            background-color: transparent;
+            border: none;
             color: var(--color-text);
-            border-radius: 7px;
+            
+            &:focus {
+                border: none;
+            }
+        }
+        .note-title {
+            height: 10%;
+        }
+        .note-text {
+            height: 90%;
         }
 
         .view-note-modal {
