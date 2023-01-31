@@ -162,7 +162,8 @@
   <Teleport to="body">
     <div class="modals" v-if="noteEditModal">
       <div class="modal">
-        <textarea class="form-control" name="newNote" id="newNote" rows="10" v-model="newNote" placeholder="Write your note here" autofocus></textarea>
+        <textarea class="form-control note-title" name="noteTitle" id="updateNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
+        <textarea class="form-control note-text" name="noteText" id="updateNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
         <button class="btn btn-update btn-primary" @click="updateNote()">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
