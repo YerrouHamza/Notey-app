@@ -220,10 +220,10 @@
     <div class="cards">
       <div v-for="(note, index) in notesState" :key="note.id" class="card" :style="{backgroundColor: note.background}">
         <div class="card-content">
-          <h3 class="card-title">
+          <h3 class="card-title" v-if="note.noteTitle">
             {{ note.noteTitle }}
           </h3>
-          <p class="card-text">
+          <p class="card-text" v-if="note.noteText">
             {{ note.noteText }}
           </p>
         </div>
