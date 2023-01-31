@@ -219,9 +219,14 @@
     <!-- Note cards -->
     <div class="cards">
       <div v-for="(note, index) in notesState" :key="note.id" class="card" :style="{backgroundColor: note.background}">
-        <p class="card-text">
-          {{ note.value }}
-        </p>
+        <div class="card-content">
+          <h3 class="card-title">
+            {{ note.noteTitle }}
+          </h3>
+          <p class="card-text">
+            {{ note.noteText }}
+          </p>
+        </div>
         <small class="cards-date">
           {{ note.date.toLocaleDateString('en-MR') }} 
           <span>
