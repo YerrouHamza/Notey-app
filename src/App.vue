@@ -8,7 +8,8 @@
   
   const newNote = ref({
     title: '',
-    text: ''
+    text: '',
+    date: Number
   });
   const notesState = ref([
     {
@@ -50,6 +51,8 @@
   
   // open & close modal function
   const openModall = () => {
+    newNote.value.date = new Date();
+
     newNote.value.title = ''
     newNote.value.text = ''
     noteModal.value = true
@@ -68,7 +71,7 @@
     notesState.value.push({
       noteTitle: newNote.value.title,
       noteText: newNote.value.text,
-      date: new Date(),
+      date: newNote.value.date,
       id: Math.floor(Math.random() * 100000000),
       background: "hsl(" + Math.random() * 360 + ", 100%, 75%)"
     })
@@ -140,7 +143,11 @@
       <div class="modal">
         <textarea class="form-control note-title" name="noteTitle" id="addNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
         <textarea class="form-control note-text" name="noteText" id="addNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
-        <p class="error-missage" v-if="noteErrorTextLenght">{{ noteErrorTextLenght }}</p>
+        <p>{{newNote.date.toDateString('en-MR')}} 
+          <span>
+            ( {{ newNote.date.toLocaleTimeString('en-US') }} )
+          </span>
+        </p>
         <button class="btn btn-add btn-primary" @click="addNewNote">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
