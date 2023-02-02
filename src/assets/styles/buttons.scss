@@ -34,7 +34,7 @@
     padding: 0;
     
     &:hover {
-        background-color: rgb(229, 44, 44);
+        background-color: var(--danger-color);
         opacity: 1;
         color: white;
     }
@@ -87,8 +87,14 @@
         color: black;
         font-size: 0;
         margin: 0 2px;
+        transition: all .3s ease-in-out;
     }
     .btn-icon:hover {
         opacity: .9;
     }
+}
+
+.delete-btn:hover {
+    background-color: var(--danger-color) !important;
+    color: white;
 }
