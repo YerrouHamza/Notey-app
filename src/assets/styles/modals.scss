@@ -64,9 +64,7 @@
             align-items: center;
         }
 
-        .btn-update,
-        .btn-icon,
-        .btn-add {
+        .btn-bottom {
             bottom: 0;
             top: auto;
             border: none;
@@ -81,5 +79,25 @@
         position: relative;
         inset: 0;
         z-index: 3;
+    }
+
+    .modal-confirm {
+        height: 150px;
+        width: 90%;
+        max-width: 500px;
+
+        .title{
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+            color: var(--danger-color);
+        }
+        .text {
+            font-size: 1.2rem;
+        }
+
+        .btn-delete {
+            background-color: var(--danger-color);
+            color: white;
+        }
     }
 }

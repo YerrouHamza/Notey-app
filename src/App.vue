@@ -4,6 +4,7 @@
   const noteModal = ref(false);
   const noteEditModal = ref(false);
   const noteViewModal = ref(false);
+  const confirmModal = ref(false);
   const noteErrorTextLenght = ref('');
   
   const newNote = ref({
@@ -61,9 +62,10 @@
     noteModal.value = true
   }
   const closeModall = () => {
-    noteModal.value = false
-    noteEditModal.value = false
+    noteModal.value = false;
+    noteEditModal.value = false;
     noteViewModal.value = false;
+    confirmModal.value = false
     
     newNote.value.title = ''
     newNote.value.text = ''
@@ -88,11 +90,18 @@
   
   // delete the note
   const deleteNote = (item) => {
-    // notesState.value.splice(item.id, 1);
-    const newNotesState = notesState.value.filter((items) => items !== item );
-    notesState.value = newNotesState;
+    targetNoteState.value = item;
+    confirmModal.value = true
+    console.log(targetNoteState.value)
     
+  }
+  
+  const confirmDelet = () => {
+    const newNotesState = notesState.value.filter((items) => items !== targetNoteState.value );
+    notesState.value = newNotesState;
+
     storeData(); // save data on local storage
+    closeModall() // call function to close the modal
   }
   
   // edit the note (click on the edit button)
@@ -140,6 +149,34 @@
 </script>
 
 <template>
+
+  <!-- confirm modal -->
+  <teleport to='body'>
+    <div class="modals" v-if="confirmModal">
+      <div class="modal modal-confirm">
+        <h2 class="title">Are you sure?</h2>
+        <p class="text">This action will delete this note one time</p>
+        <!-- close button -->
+        <button class="btn btn-close" @click="closeModall">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M18 6l-12 12"></path>
+            <path d="M6 6l12 12"></path>
+          </svg>
+        </button>
+        <!-- Delete button -->
+        <button class="btn btn-bottom btn-delete" @click="confirmDelet">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M4 7h16" />
+              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+              <path d="M10 12l4 4m0 -4l-4 4" />
+            </svg>  
+        </button>
+      </div>
+    </div>
+  </teleport>
   <!-- add note modal -->
   <Teleport to="body">
     <div class="modals" v-if="noteModal">
@@ -152,7 +189,7 @@
           </span>
         </p>
         
-        <button class="btn btn-add btn-primary" @click="addNewNote">
+        <button class="btn btn-add btn-primary btn-bottom" @click="addNewNote">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M5 12l5 5l10 -10"></path>
@@ -175,7 +212,7 @@
       <div class="modal">
         <textarea class="form-control note-title" name="noteTitle" id="updateNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
         <textarea class="form-control note-text" name="noteText" id="updateNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
-        <button class="btn btn-update btn-primary" @click="updateNote()">
+        <button class="btn btn-update btn-primary btn-bottom" @click="updateNote()">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <path d="M5 12l5 5l10 -10"></path>
@@ -206,7 +243,7 @@
           </svg>
         </button>
 
-          <button class="btn btn-icon" @click="editNote(targetNoteState.note, targetNoteState.index)" :style="{backgroundColor: targetNoteState.note.background}">
+          <button class="btn btn-icon btn-bottom" @click="editNote(targetNoteState.note, targetNoteState.index)" :style="{backgroundColor: targetNoteState.note.background}">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
               <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
