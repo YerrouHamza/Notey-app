@@ -95,6 +95,12 @@
             font-size: 1.2rem;
         }
 
+
+        .btn-close{
+            &:hover {
+                background-color: var(--green-color);
+            }
+        }
         .btn-delete {
             background-color: var(--danger-color);
             color: white;
