@@ -1,13 +1,16 @@
 
 /* style for the modals */
-.modals {
+.modal {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content:center;
     align-items: center;
+
+    z-index: 0;
     
     &::after {
         content: '';
@@ -17,10 +20,10 @@
         width: 100vw;
         background-color: rgba(128, 128, 128, 0.414);
         backdrop-filter: blur(.5rem);
-        z-index: 2;
+        z-index: -1;
     }
     
-    .modal {
+    .modal-container {
         height: 90vh;
         width: 800px;
         position: relative;
@@ -74,11 +77,17 @@
     .view-note-modal {
         height: 90vh;
         width: 800px;
-        padding: 25px;
+        padding: 25px 0;
         color: black !important;
         position: relative;
         inset: 0;
         z-index: 3;
+
+        .modal-body {
+            height: 100%;
+            padding: 0 25px;
+            overflow: scroll;
+        }
     }
 
     .modal-confirm {
@@ -104,6 +113,26 @@
         .btn-delete {
             background-color: var(--danger-color);
             color: white;
+        }
+    }
+
+
+}
+
+.modal-info {
+    display: flex;
+    justify-content: space-between;
+    .date {
+        padding: 5px 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1.1;
+
+
+        svg {
+            margin-right: 3px;
+            height: 20px;
         }
     }
 }
