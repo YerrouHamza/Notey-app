@@ -22,6 +22,8 @@
         backdrop-filter: blur(.5rem);
         z-index: -1;
     }
+
+
     
     .modal-container {
         height: 90vh;
@@ -31,8 +33,14 @@
         z-index: 3;
         border-radius: 7px;
         background-color: var(--color-background);
-        padding: 25px;
+        padding: 25px 0;
         border-radius: 7px;
+
+        .modal-body {
+            height: 100%;
+            padding: 0 25px;
+            overflow: scroll;
+        }
         
         .form-control {
             background-color: transparent;
@@ -42,12 +50,6 @@
             &:focus {
                 border: none;
             }
-        }
-        .note-title {
-            height: 10%;
-        }
-        .note-text {
-            height: 85%;
         }
 
         .view-note-modal {
@@ -82,12 +84,6 @@
         position: relative;
         inset: 0;
         z-index: 3;
-
-        .modal-body {
-            height: 100%;
-            padding: 0 25px;
-            overflow: scroll;
-        }
     }
 
     .modal-confirm {
