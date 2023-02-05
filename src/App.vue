@@ -9,7 +9,6 @@
   const noteEditModal = ref(false);
   const noteViewModal = ref(false);
   const confirmModal = ref(false);
-  const noteErrorTextLenght = ref('');
   
   const newNote = ref({
     title: '',
@@ -84,19 +83,18 @@
       id: Math.floor(Math.random() * 100000000),
       background: "hsl(" + Math.random() * 360 + ", 100%, 75%)"
     })
-    noteModal.value = false;
     newNote.value.title = ''
     newNote.value.text = '' 
     
     storeData(); // save data on local storage
+    closeModall() // close modals
   }
   
   
   // delete the note
   const deleteNote = (item) => {
     targetNoteState.value = item;
-    confirmModal.value = true
-    console.log(targetNoteState.value)
+    confirmModal.value = true;
     
   }
   
@@ -110,9 +108,6 @@
   
   // edit the note (click on the edit button)
   const editNote = (item, index) => {
-    noteModal.value = false;
-    noteViewModal.value = false;
-    
     noteEditModal.value = true;
     newNote.value.title = item.noteTitle;
     newNote.value.text = item.noteText;
@@ -121,6 +116,9 @@
       index: index,
       note: item
     };
+    
+    noteModal.value = false;
+    noteViewModal.value = false;
   }
   
   // updated the note
@@ -135,9 +133,9 @@
       date: noteTarget.date,
       id: noteTarget.id
     }
-    noteEditModal.value = false;
-    
+
     storeData(); // save data on local storage
+    closeModall() // close modals
   }
   
   // view note
@@ -149,9 +147,6 @@
       note: item
     };
   }
-
-  const targetteat = ref('test')
-
 </script>
 
 <template>

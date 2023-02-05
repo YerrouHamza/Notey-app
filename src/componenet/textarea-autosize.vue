@@ -21,9 +21,6 @@
     const targetElement = document.getElementsByTagName('textarea');
 
     onMounted(() => {
-    
-        console.log(targetElement)
-    
         targetElement[0].style.height = `auto`;
         targetElement[0].style.height = `${targetElement[0].scrollHeight}px`;
         targetElement[1].style.height = `auto`;
