@@ -160,8 +160,10 @@
     <!-- confirm modal -->
     <div class="modal" v-if="confirmModal">
       <div class="modal-container modal-confirm">
-        <h2 class="title">Are you sure?</h2>
-        <p class="text">This action will delete this note one time</p>
+        <div class="modal-body">
+          <h2 class="title">Are you sure?</h2>
+          <p class="text">This action will delete this note one time</p>
+        </div>
         
         <!-- close button -->
         <button class="btn btn-close" @click="closeModall">
