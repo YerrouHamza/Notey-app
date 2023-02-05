@@ -1,4 +1,6 @@
 <script setup>
+    import { onMounted } from "vue";
+    
     const props = defineProps({
         modelValue: String
     })
@@ -16,7 +18,22 @@
 
         resizeFunction(e) // call the resize textarea height function
     }
+    const targetElement = document.getElementsByTagName('textarea');
 
+    onMounted(() => {
+    
+        console.log(targetElement)
+    
+        targetElement[0].style.height = `auto`;
+        targetElement[0].style.height = `${targetElement[0].scrollHeight}px`;
+        targetElement[1].style.height = `auto`;
+        targetElement[1].style.height = `${targetElement[1].scrollHeight}px`;
+    
+        // targetElement.map(item => {
+        //     item.style.height = `auto`;
+        //     item.style.height = `${item.scrollHeight}px`;
+        // })
+    });
 
 </script>
 
@@ -24,5 +41,6 @@
     <textarea
         ref="el"
         @input="resize($event)"
+        
     >{{ props.modelValue }}</textarea>
 </template>
