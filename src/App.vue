@@ -2,7 +2,6 @@
   // import the component
   import textareaAutosize from './componenet/textarea-autosize.vue';
 
-
   import { ref, watch, onMounted } from 'vue'
 
   const noteModal = ref(false);
@@ -10,11 +9,6 @@
   const noteViewModal = ref(false);
   const confirmModal = ref(false);
   
-  const newNote = ref({
-    title: '',
-    text: '',
-    date: Number
-  });
   const notesState = ref([
     {
       noteTitle: 'Hello World',
@@ -24,7 +18,7 @@
       date: new Date()
     }
   ]);
-  
+  const newNote = ref({});
   const targetNoteState = ref({}); // storage the target note {index, Target Note}
   
   
@@ -116,7 +110,7 @@
       index: index,
       note: item
     };
-    
+
     noteModal.value = false;
     noteViewModal.value = false;
   }
