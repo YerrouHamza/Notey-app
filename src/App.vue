@@ -1,4 +1,8 @@
 <script setup>
+  // import the component
+  import textareaAutosize from './componenet/textarea-autosize.vue';
+
+
   import { ref, watch, onMounted } from 'vue'
 
   const noteModal = ref(false);
@@ -146,9 +150,12 @@
     };
   }
 
+  const targetteat = ref('test')
+
 </script>
 
 <template>
+  <!-- Modals -->
   <Teleport to="body">
     <!-- confirm modal -->
     <div class="modal" v-if="confirmModal">
@@ -164,25 +171,25 @@
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-
+        
         <!-- Delete button -->
         <button class="btn btn-bottom btn-delete" @click="confirmDelet">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-              <path d="M4 7h16" />
-              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-              <path d="M10 12l4 4m0 -4l-4 4" />
-            </svg>  
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4 7h16" />
+            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+            <path d="M10 12l4 4m0 -4l-4 4" />
+          </svg>  
         </button>
       </div>
     </div>
-
+    
     <!-- add note modal -->
     <div class="modal" v-if="noteModal">
       <div class="modal-container">
-        <textarea class="form-control note-title" name="noteTitle" id="addNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
-        <textarea class="form-control note-text" name="noteText" id="addNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
+        <textareaAutosize class="form-control note-title" name="noteTitle" id="addNoteTitle" v-model="newNote.title" placeholder="Note Title" autofocus></textareaAutosize>
+        <textareaAutosize class="form-control note-text" name="noteText" id="addNoteText" v-model="newNote.text" placeholder="Write your note here"></textareaAutosize>
         <p>{{newNote.date.toDateString('en-MR')}} 
           <span>
             ( {{ newNote.date.toLocaleTimeString('en-US') }} )
@@ -197,7 +204,7 @@
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-
+        
         <!-- Add note button -->
         <button class="btn btn-add btn-primary btn-bottom" @click="addNewNote">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -207,12 +214,12 @@
         </button>
       </div>
     </div>
-
+    
     <!-- update note modal -->    
     <div class="modal" v-if="noteEditModal">
       <div class="modal-container">
-        <textarea class="form-control note-title" name="noteTitle" id="updateNoteTitle" rows="10" v-model="newNote.title" placeholder="Note Title" autofocus></textarea>
-        <textarea class="form-control note-text" name="noteText" id="updateNoteText" rows="10" v-model="newNote.text" placeholder="Write your note here"></textarea>
+        <textareaAutosize class="form-control note-title" name="noteTitle" id="updateNoteTitle" v-model="newNote.title" placeholder="Note Title" autofocus></textareaAutosize>
+        <textareaAutosize class="form-control note-text" name="noteText" id="updateNoteText" v-model="newNote.text" placeholder="Write your note here"></textareaAutosize>
         
         <!-- Close button -->
         <button class="btn btn-close" @click="closeModall">
@@ -222,7 +229,7 @@
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-
+        
         <!-- Update Button -->
         <button class="btn btn-update btn-primary btn-bottom" @click="updateNote()">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -232,7 +239,7 @@
         </button>
       </div>
     </div>
-  
+    
     <!-- View note modal -->
     <div class="modal" v-if="noteViewModal">
       <!-- Modal Conetent -->
@@ -306,7 +313,7 @@
           </span>
         </small>
         <div class="icons-btn-group">
-
+          
           <!-- View button -->
           <button class="btn-icon" @click="viewNote(note, index)" :style="{backgroundColor: note.background}">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
