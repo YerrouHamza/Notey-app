@@ -43,7 +43,7 @@
     }
   });
 
-  localStorage.clear() // clear the local storage each time you updated the main state
+  // localStorage.clear() // clear the local storage each time you updated the main state
   
   /* watch functions */
   watch(notesState.value, () => { // watch the main note
