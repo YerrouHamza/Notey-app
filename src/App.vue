@@ -368,22 +368,6 @@
 </template>
 
 <style scoped>
-  main {
-    width: 1000px;
-    margin: 30px auto;
-  }
-
-  .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-
-  .head .title { /* the header titles */
-    font-size: 3rem;
-    font-weight: 600;
-    margin: 0;
-  }
+  
 
 </style>

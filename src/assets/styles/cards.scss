@@ -7,8 +7,8 @@
     gap: 20px;
     
     .card {
-        width: 235px;
-        height: 235px;
+        width: 240px;
+        height: 240px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -58,11 +58,12 @@
             -webkit-line-clamp: 10; /* number of lines to show */
                     line-clamp: 10; 
             -webkit-box-orient: vertical;
-            line-break: anywhere;
+            line-break: auto;
             line-height: 1.15;
         }
         &-title {
             margin-bottom: 5px;
+            line-height: 1.1;
         }
         &-text {
         font-size: .9rem;
@@ -90,5 +91,22 @@
             }
         }
 
+    }
+
+
+
+    /* the meedia quires */
+    // Tablet < 1060px
+    @media only screen and (max-width: 1061px) {
+        .card {
+            width: calc(50% - 20px);
+        }
+    }
+
+    // mobile < 600px
+    @media only screen and (max-width: 601px) {
+        .card {
+            width: 100%;
+        }
     }
 }
