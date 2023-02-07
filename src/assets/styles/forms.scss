@@ -17,3 +17,19 @@
     }
     
 }
+
+
+/* the meedia quires */
+// Tablet < 1060px
+@media only screen and (max-width: 1061px) {
+    .form-control {
+        &.note-title {
+            font-size: 1.5rem;
+        }
+    
+        &.note-text {
+            font-size: 1.1rem;
+        }
+        
+    }
+}

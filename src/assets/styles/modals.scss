@@ -1,23 +1,27 @@
 
 /* style for the modals */
 .modal {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999999;
+
+    width: 100vw;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
-
-    z-index: 0;
     
     &::after {
         content: '';
         position: absolute;
         inset: 0;
-        height: 100vh;
-        width: 100vw;
+        height: 100%;
+        width: 100%;
         background-color: rgba(128, 128, 128, 0.414);
         backdrop-filter: blur(.5rem);
         z-index: -1;
@@ -71,6 +75,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            svg {
+                min-width: 25px;
+            }
         }
 
         .btn-bottom {
@@ -151,5 +159,47 @@
             margin-right: 3px;
             height: 20px;
         }
+    }
+}
+
+
+/* the meedia quires */
+// Tablet < 1060px
+@media only screen and (max-width: 1061px) {
+    .modal {
+        .modal-container {
+            height: 80vh;
+            width: 95%;
+            margin-top: 80px;
+    
+            .btn {
+                position: absolute;
+                right: auto;
+                left: 0;
+                top: 0;
+                width: 50px;
+                height: 50px;
+                transform: translate(0, calc(-100% - 20px));
+            }
+            
+            .btn-bottom {
+                transform: translate(130%, calc(-100% - 20px));
+            }
+        }
+
+        .modal-confirm {
+            height: 150px !important;
+
+            .title{
+                font-size: 1.5rem;
+            }
+            .text {
+                font-size: .9rem;
+            }
+        }
+    }
+
+    .modal-info {
+        width: 90%;
     }
 }

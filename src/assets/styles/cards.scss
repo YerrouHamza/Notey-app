@@ -98,8 +98,22 @@
     /* the meedia quires */
     // Tablet < 1060px
     @media only screen and (max-width: 1061px) {
+        margin-top: 40px;
         .card {
             width: calc(50% - 20px);
+            margin-bottom: 40px;
+        }
+
+        .icons-btn-group {
+            text-align: left;
+            position: absolute;
+            width: 100%;
+            left: 50%;
+            top: -18%;
+            z-index: 3;
+            transform: translate(-50%);
+            transition: display 1s ease-in-out;
+            display: inherit;
         }
     }
 
