@@ -68,9 +68,27 @@
         font-size: .9rem;
     
         }
-        &-date {
-        font-size: .7rem;
-        opacity: .9;
+
+        &-info {
+            // .card-status {
+            //     display: flex;
+            //     justify-content: flex-start;
+            //     align-items: center;
+            //     gap: 5px;
+    
+            //     .statu {
+            //         height: 20px; width: 20px;
+            //         border-radius: 50%;
+            //         border: 1px solid black;
+            //     }
+            // }
+    
+    
+            .card-date {
+            font-size: .7rem;
+            opacity: .9;
+            }
         }
+
     }
 }

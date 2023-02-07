@@ -120,10 +120,27 @@
 }
 
 .modal-info {
+    width: 800px;
+    height: 5vh;
+    min-height: 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+    // .status {
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     gap: 5px;
+
+    //     span {
+    //         padding: 2px 5px;
+    //         font-size: 14px;
+    //         font-weight: 600;
+    //         border-radius: 20px;
+    //     }
+    // }
+
     .date {
-        padding: 5px 25px;
         display: flex;
         justify-content: center;
         align-items: center;

@@ -43,7 +43,7 @@
     }
   });
 
-  // localStorage.clear() // clear the local storage each time you updated the main state
+  localStorage.clear() // clear the local storage each time you updated the main state
   
   /* watch functions */
   watch(notesState.value, () => { // watch the main note
@@ -103,8 +103,6 @@
   // edit the note (click on the edit button)
   const editNote = (item, index) => {
     noteEditModal.value = true;
-    newNote.value.title = item.noteTitle;
-    newNote.value.text = item.noteText;
     
     targetNoteState.value = {
       index: index,
@@ -121,8 +119,8 @@
     const noteTarget = targetNoteState.value.note; // get the note content
 
     notesState.value[noteIndex] = {
-      noteTitle: newNote.value.title,
-      noteText: newNote.value.text,
+      noteTitle: noteTarget.noteTitle,
+      noteText: noteTarget.noteText,
       background: noteTarget.background,
       date: noteTarget.date,
       id: noteTarget.id
@@ -193,7 +191,7 @@
             <path d="M6 6l12 12"></path>
           </svg>
         </button>
-        
+
         <!-- Add note button -->
         <button class="btn btn-add btn-primary btn-bottom" @click="addNewNote">
           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -221,8 +219,8 @@
     <div class="modal" v-if="noteEditModal">
       <div class="modal-container">
         <div class="modal-body">
-          <textareaAutosize class="form-control note-title" name="noteTitle" id="updateNoteTitle" v-model="newNote.title" placeholder="Note Title" autofocus></textareaAutosize>
-          <textareaAutosize class="form-control note-text" name="noteText" id="updateNoteText" v-model="newNote.text" placeholder="Write your note here"></textareaAutosize>
+          <textareaAutosize class="form-control note-title" name="noteTitle" id="updateNoteTitle" v-model="targetNoteState.note.noteTitle" placeholder="Note Title" autofocus></textareaAutosize>
+          <textareaAutosize class="form-control note-text" name="noteText" id="updateNoteText" v-model="targetNoteState.note.noteText" placeholder="Write your note here"></textareaAutosize>
         </div>
         
         <!-- Close button -->
@@ -241,6 +239,19 @@
             <path d="M5 12l5 5l10 -10"></path>
           </svg>
         </button>
+      </div>
+      <!-- Modal Info -->
+      <div class="modal-info">
+        <div class="date">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+            <path d="M12 7l0 5l3 3"></path>
+          </svg> {{targetNoteState.note.date.toDateString('en-MR')}} 
+          <span>
+            ( {{ targetNoteState.note.date.toLocaleTimeString('en-US') }} )
+          </span>
+        </div>
       </div>
     </div>
     
@@ -310,12 +321,15 @@
             {{ note.noteText }}
           </p>
         </div>
-        <small class="cards-date">
-          {{ note.date.toLocaleDateString('en-MR') }} 
-          <span>
-            ({{ note.date.toLocaleTimeString('en-US') }})
-          </span>
-        </small>
+        <div class="card-info">
+          <small class="cards-date">
+            {{ note.date.toLocaleDateString('en-MR') }} 
+            <span>
+              ({{ note.date.toLocaleTimeString('en-US') }})
+            </span>
+          </small>
+        </div>
+
         <div class="icons-btn-group">
           
           <!-- View button -->
