@@ -81,12 +81,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
  
-  position: absolute;
-  
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // flex-direction: column;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 
