@@ -1,6 +1,7 @@
 <script setup>
   // import the component
   import textareaAutosize from './componenet/textarea-autosize.vue';
+  import noData from './componenet/no-data.vue';
 
   import { ref, watch, onMounted } from 'vue'
 
@@ -310,8 +311,12 @@
         </svg>
       </buttom>
     </header>
+
+    <!--  -->
+
     <!-- Note cards -->
     <div class="cards">
+      <noData />
       <div v-for="(note, index) in notesState" :key="note.id" class="card" :style="{backgroundColor: note.background}">
         <div class="card-content">
           <h3 class="card-title" v-if="note.noteTitle">
