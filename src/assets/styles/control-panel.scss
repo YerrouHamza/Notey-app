@@ -10,12 +10,12 @@
     width: 100%;
     z-index: 999999;
     background: var(--color-background-mute);
-    box-shadow: 0px 0px 18px -11px #fbfbfb4f;
-
+    
     transition: transform .3s ease-in-out;
     
     /* open panel */
     &.open {
+        box-shadow: 0px 0px 18px -11px #fbfbfb4f;
         transform: translateX(0);
     }
     
@@ -26,12 +26,12 @@
         left: auto;
         width: 80px;
         height: 60px;
-        transform: translate(-300px, 200px);
+        transform: translate(-295px, 200px);
         z-index: 100;
         border: none;
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
-
+        
         background-color: var(--color-background-mute);
         color: var(--color-text);
 
@@ -40,4 +40,22 @@
             filter: brightness(.9);
         }
     }
+    
+    
+    @media only screen and (max-width: 601px) {
+
+        &.open {
+            max-width: 100%;
+        }
+
+        .btn.close {
+            background-color: transparent;
+            padding: 0;
+            right: auto;
+            transform: translate(10px, 10px);
+            width: 40px;
+            height: 40px;
+        }
+    }
 }
+
