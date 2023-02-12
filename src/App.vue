@@ -2,6 +2,7 @@
   // import the component
   import textareaAutosize from './componenet/textarea-autosize.vue';
   import noData from './componenet/no-data.vue';
+  import controlPanel from './componenet/control-panel.vue'
 
   import { ref, watch, onMounted } from 'vue'
 
@@ -311,6 +312,9 @@
         </svg>
       </buttom>
     </header>
+
+    <!-- note app controls -->
+    <controlPanel />
 
     <!-- Note cards -->
     <div class="cards">
