@@ -312,11 +312,9 @@
       </buttom>
     </header>
 
-    <!--  -->
-
     <!-- Note cards -->
     <div class="cards">
-      <noData />
+      <noData v-if="notesState.length == 0" /> <!-- if the state empty show no data -->
       <div v-for="(note, index) in notesState" :key="note.id" class="card" :style="{backgroundColor: note.background}">
         <div class="card-content">
           <h3 class="card-title" v-if="note.noteTitle">
