@@ -40,7 +40,25 @@
             filter: brightness(.9);
         }
     }
-    
+
+    /* panel content */
+    .content {
+        padding: 50px 20px;
+
+        .panel-title {
+            font-size: 2rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            letter-spacing: 1.6px;
+
+            margin-bottom: 3rem;
+
+            svg {
+                margin-right: 5px;
+            }
+        }
+    }
     
     @media only screen and (max-width: 601px) {
 
