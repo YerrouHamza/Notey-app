@@ -11,6 +11,33 @@
     &:active {
         transform: scale(.9);
     }
+
+
+    &-group {
+        display: block;
+        border: 1px solid var(--color-background-mute);
+        background-color: var(--color-background);
+        width: fit-content;
+        padding: 3px;
+        border-radius: 10px;
+        
+        .mode-btn {
+            color: var(--color-text);
+            background-color: transparent;
+            height: 50px;   
+            border-radius: 10px;
+            border: none;
+            transition: all .3s ease-in-out;
+
+            svg {
+                pointer-events: none;
+            }
+
+            &.active {
+                background-color: var(--color-background-mute);
+            }
+        }
+    }
     
 }
 
