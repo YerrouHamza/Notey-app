@@ -1,7 +1,8 @@
 <script setup>
     import { ref, watch } from 'vue';
 
-    const controlBtn = ref(true)
+    const controlBtn = ref(true);
+    const themeMode = ref('');
         
         
     const controlPanelBtn = () => {
@@ -11,21 +12,7 @@
     }
 
     // theme mode functions
-    const darkMode = (e) => {
-        console.log()
-        
-        e.target.classList.add('active')
-    }
-    const lightMode = (e) => {
-        console.log(e.target)
-        e.target.classList.add('active')
-        
-    }
-    const autoMode = (e) => {
-        console.log(e.target)
-        e.target.classList.add('active')
-        
-    }
+   
 </script>
 
 <template>
@@ -60,46 +47,107 @@
 
             <div class="form-group">
                 <h3>Theme Mode</h3>
-                <div class="btn-group">
-                    <button class="btn mode-btn active" @click="darkMode($event)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
-                            <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
-                            <path d="M19 11h2m-1 -1v2"></path>
-                        </svg>
-                    </button>
-
-                    <button class="btn mode-btn" @click="lightMode($event)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
-                            <path d="M6.343 17.657l-1.414 1.414"></path>
-                            <path d="M6.343 6.343l-1.414 -1.414"></path>
-                            <path d="M17.657 6.343l1.414 -1.414"></path>
-                            <path d="M17.657 17.657l1.414 1.414"></path>
-                            <path d="M4 12h-2"></path>
-                            <path d="M12 4v-2"></path>
-                            <path d="M20 12h2"></path>
-                            <path d="M12 20v2"></path>
-                        </svg>
-                    </button>
-
-                    <button class="btn mode-btn" @click="autoMode($event)">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M9.173 14.83a4 4 0 1 1 5.657 -5.657"></path>
-                            <path d="M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914"></path>
-                            <path d="M3 12h1"></path>
-                            <path d="M12 3v1"></path>
-                            <path d="M5.6 5.6l.7 .7"></path>
-                            <path d="M3 21l18 -18"></path>
-                        </svg>
-                    </button>
-                </div>
+                <ul class="filter-mode-list">
+                    <li>
+                        <input type="radio" name="themeMode" id="light-mode" checked>
+                        <label for="light-mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path>
+                                <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2"></path>
+                                <path d="M19 11h2m-1 -1v2"></path>
+                            </svg>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="themeMode" id="dark-mode">
+                        <label for="dark-mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z"></path>
+                                <path d="M6.343 17.657l-1.414 1.414"></path>
+                                <path d="M6.343 6.343l-1.414 -1.414"></path>
+                                <path d="M17.657 6.343l1.414 -1.414"></path>
+                                <path d="M17.657 17.657l1.414 1.414"></path>
+                                <path d="M4 12h-2"></path>
+                                <path d="M12 4v-2"></path>
+                                <path d="M20 12h2"></path>
+                                <path d="M12 20v2"></path>
+                            </svg>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" name="themeMode" id="auto-mode">
+                        <label for="auto-mode">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9.173 14.83a4 4 0 1 1 5.657 -5.657"></path>
+                                <path d="M11.294 12.707l.174 .247a7.5 7.5 0 0 0 8.845 2.492a9 9 0 0 1 -14.671 2.914"></path>
+                                <path d="M3 12h1"></path>
+                                <path d="M12 3v1"></path>
+                                <path d="M5.6 5.6l.7 .7"></path>
+                                <path d="M3 21l18 -18"></path>
+                            </svg>
+                        </label>
+                    </li>
+                </ul>
             </div>
         </div>
 
         
     </div>
 </template>
+
+
+
+<style lang="scss" scoped>
+    
+    .filter-mode-list {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+        
+        background-color: var(--color-background);
+        border: 1px solid var(--color-background-mute);
+        border-radius: 10px;
+        padding: 3px;
+        
+        li {
+            height: 50px;
+            width: 65px;
+            list-style: none;
+            
+            cursor: none;
+
+            label {
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                color: var(--color-text);
+                background-color: transparent;
+                
+                border-radius: 10px;
+                border: none;
+                transition: all 0.3s ease-in-out;
+                
+                cursor: pointer;
+            }
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input:checked ~ label {
+            background-color: var(--color-background-mute);
+        }
+
+    }
+</style>
