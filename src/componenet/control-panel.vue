@@ -2,7 +2,7 @@
     import { ref, watch } from 'vue';
 
     const controlBtn = ref(true);
-    const themeMode = ref('');
+    const themeMode = ref('dark');
         
         
     const controlPanelBtn = () => {
@@ -11,8 +11,26 @@
         controlBtn.value = !controlBtn.value // switch the controlBtn ref value
     }
 
-    // theme mode functions
-   
+
+    watch(themeMode, () => {
+        changeThemeMode() // call change theme mode function
+    })
+    
+
+    // change theme mode function
+    const body = document.querySelector('body');
+    const changeThemeMode = () => {
+        if(themeMode.value == 'dark') {
+            body.classList.remove('light', 'auto')
+            body.classList.add(themeMode.value)
+        } else if (themeMode.value == 'light') {
+            body.classList.remove('dark', 'auto')
+            body.classList.add(themeMode.value)
+        } else {
+            body.classList.remove('dark', 'light')
+            body.classList.add(themeMode.value)
+        }
+    }
 </script>
 
 <template>
@@ -49,7 +67,7 @@
                 <h3>Theme Mode</h3>
                 <ul class="filter-mode-list">
                     <li>
-                        <input type="radio" name="themeMode" id="light-mode" checked>
+                        <input type="radio" name="themeMode" v-model="themeMode" value="dark" id="light-mode" checked>
                         <label for="light-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -60,7 +78,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="themeMode" id="dark-mode">
+                        <input type="radio" name="themeMode" v-model="themeMode" value="light" id="dark-mode">
                         <label for="dark-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -77,7 +95,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="themeMode" id="auto-mode">
+                        <input type="radio" name="themeMode" v-model="themeMode" value="auto" id="auto-mode">
                         <label for="auto-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
