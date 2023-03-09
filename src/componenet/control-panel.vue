@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, watch } from 'vue';
+    import { ref, watch, onMounted } from 'vue';
 
     const controlBtn = ref(true);
     const themeMode = ref('dark');
@@ -10,27 +10,34 @@
         panel.classList.toggle('open') // giv the panel open class
         controlBtn.value = !controlBtn.value // switch the controlBtn ref value
     }
-
-
-    watch(themeMode, () => {
-        changeThemeMode() // call change theme mode function
-    })
     
-
     // change theme mode function
     const body = document.querySelector('body');
     const changeThemeMode = () => {
-        if(themeMode.value == 'dark') {
-            body.classList.remove('light', 'auto')
-            body.classList.add(themeMode.value)
-        } else if (themeMode.value == 'light') {
-            body.classList.remove('dark', 'auto')
-            body.classList.add(themeMode.value)
-        } else {
-            body.classList.remove('dark', 'light')
-            body.classList.add(themeMode.value)
-        }
+        body.className = '';
+        body.classList.add(themeMode.value)
     }
+    
+      // function: save data on local storage
+    const storeData = () =>{
+        return localStorage.setItem('themeMode', JSON.stringify(themeMode.value));
+    }
+    const storageThemeMode = JSON.parse(localStorage.getItem('themeMode'))
+    
+    
+    onMounted(() => {
+        if (localStorage.length > 0) {
+            themeMode.value = storageThemeMode
+        } else {
+            themeMode.value = 'dark'
+        }
+    });
+    
+    watch(themeMode, () => {
+        changeThemeMode() // call change theme mode function
+        storeData() // stogare the theme mode update
+    })
+    
 </script>
 
 <template>
