@@ -2,8 +2,11 @@
     import { ref, watch, onMounted } from 'vue';
 
     const controlBtn = ref(true);
-    const themeMode = ref('dark');
-        
+    const appSettings = ref({
+        themeMode: 'dark',
+        AppTitle: 'Notey App'
+    });
+
         
     const controlPanelBtn = () => {
         const panel = document.querySelector('#panel')
@@ -11,32 +14,57 @@
         controlBtn.value = !controlBtn.value // switch the controlBtn ref value
     }
     
-    // change theme mode function
+    // change THEME MODE function
     const body = document.querySelector('body');
     const changeThemeMode = () => {
         body.className = '';
-        body.classList.add(themeMode.value)
+        body.classList.add(appSettings.value.themeMode)
+    }
+    // chnage APP TITLE function
+    const changeAppTitle = () => {
+        const wepTitle = document.querySelector('title');
+        const mainTitle = document.querySelector('.title');
+
+        if(appSettings.value.AppTitle >= 0) {
+            wepTitle.textContent = 'In Processing...';
+            mainTitle.textContent = 'In Processing...';
+        } else {
+            wepTitle.textContent = appSettings.value.AppTitle;
+            mainTitle.textContent = appSettings.value.AppTitle;
+        }
     }
     
-      // function: save data on local storage
+    // localStorage.clear();
+
+    // function: save data on local storage
     const storeData = () =>{
-        return localStorage.setItem('themeMode', JSON.stringify(themeMode.value));
+        return localStorage.setItem('appSettings', JSON.stringify(appSettings.value));
     }
-    const storageThemeMode = JSON.parse(localStorage.getItem('themeMode'))
+    const storageThemeMode = JSON.parse(localStorage.getItem('appSettings'))
     
     
     onMounted(() => {
+        // check and change the theme mode from local storage
         if (localStorage.length > 0) {
-            themeMode.value = storageThemeMode
+            appSettings.value.themeMode = storageThemeMode.themeMode
+            appSettings.value.AppTitle = storageThemeMode.AppTitle
         } else {
-            themeMode.value = 'dark'
+            appSettings.value.themeMode = 'dark'
+            appSettings.value.themeMode = 'Notey App'
         }
     });
     
-    watch(themeMode, () => {
+    watch(appSettings.value, () => {
         changeThemeMode() // call change theme mode function
+        changeAppTitle() // call change app title function
         storeData() // stogare the theme mode update
+        
     })
+    
+
+
+
+
     
 </script>
 
@@ -70,11 +98,17 @@
                 Settings 
             </h2>
 
+
+            <div class="form-group">
+                <h3>App Name</h3>
+                <input class="form-control" type="text" name="appTitle" id="app-title" v-model="appSettings.AppTitle" placeholder="Change the app name">
+            </div>
+
             <div class="form-group">
                 <h3>Theme Mode</h3>
                 <ul class="filter-mode-list">
                     <li>
-                        <input type="radio" name="themeMode" v-model="themeMode" value="dark" id="light-mode" checked>
+                        <input type="radio" name="themeMode" v-model="appSettings.themeMode" value="dark" id="light-mode" checked>
                         <label for="light-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -85,7 +119,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="themeMode" v-model="themeMode" value="light" id="dark-mode">
+                        <input type="radio" name="themeMode" v-model="appSettings.themeMode" value="light" id="dark-mode">
                         <label for="dark-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-high" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -102,7 +136,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="radio" name="themeMode" v-model="themeMode" value="auto" id="auto-mode">
+                        <input type="radio" name="themeMode" v-model="appSettings.themeMode" value="auto" id="auto-mode">
                         <label for="auto-mode">
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -127,52 +161,5 @@
 
 <style lang="scss" scoped>
     
-    .filter-mode-list {
-        width: fit-content;
-        height: fit-content;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 5px;
-        
-        background-color: var(--color-background);
-        border: 1px solid var(--color-background-mute);
-        border-radius: 10px;
-        padding: 3px;
-        
-        li {
-            height: 50px;
-            width: 65px;
-            list-style: none;
-            
-            cursor: none;
-
-            label {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                color: var(--color-text);
-                background-color: transparent;
-                
-                border-radius: 10px;
-                border: none;
-                transition: all 0.3s ease-in-out;
-                
-                cursor: pointer;
-            }
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        input:checked ~ label {
-            background-color: var(--color-background-mute);
-        }
-
-    }
+    
 </style>
