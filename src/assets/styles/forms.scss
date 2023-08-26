@@ -2,6 +2,7 @@
 .form-control {
     width: 100%;
     resize: none;
+    overflow: hidden;
     
     &:focus, &:active, &:focus-visible {
         border: none;
